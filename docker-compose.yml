@@ -1,0 +1,58 @@
+version: "3.8"
+
+services:
+  mqtt-broker:
+    image: eclipse-mosquitto:2.0
+    container_name: campus-mqtt
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+    restart: unless-stopped
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: campus-gateway
+    ports:
+      - "3001:3001"
+    environment:
+      - INCIDENT_SERVICE_URL=http://incident-service:3002
+      - NOTIFICATION_SERVICE_URL=http://notification-service:3003
+      - ANALYTICS_SERVICE_URL=http://analytics-service:3004
+    depends_on:
+      - mqtt-broker
+    restart: unless-stopped
+
+  incident-service:
+    build: ./incident-service
+    container_name: campus-incidents
+    ports:
+      - "3002:3002"
+    environment:
+      - MQTT_BROKER=mqtt://mqtt-broker:1883
+    depends_on:
+      - mqtt-broker
+    restart: unless-stopped
+
+  notification-service:
+    build: ./notification-service
+    container_name: campus-notifications
+    ports:
+      - "3003:3003"
+    environment:
+      - MQTT_BROKER=mqtt://mqtt-broker:1883
+    depends_on:
+      - mqtt-broker
+    restart: unless-stopped
+
+  analytics-service:
+    build: ./analytics-service
+    container_name: campus-analytics
+    ports:
+      - "3004:3004"
+    environment:
+      - MQTT_BROKER=mqtt://mqtt-broker:1883
+    depends_on:
+      - mqtt-broker
+    restart: unless-stopped
