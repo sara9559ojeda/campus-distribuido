@@ -20,8 +20,9 @@ app.use(morgan("combined"));
 // Rate limiter — relevant for jMeter load tests
 const limiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute
-  max: 200,
+  max: 10000,          // increased for load testing
   message: { error: "Too many requests, slow down." },
+  skip: (req) => req.path === "/health", // health checks always pass
 });
 app.use(limiter);
 

@@ -15,37 +15,126 @@ html, body {
   min-height: 100vh;
 }
 
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: #111318;
-}
-::-webkit-scrollbar-thumb {
-  background: #2d3748;
-  border-radius: 2px;
+/* ── Scrollbar ─────────────────────────────── */
+::-webkit-scrollbar        { width: 4px; height: 4px; }
+::-webkit-scrollbar-track  { background: #111318; }
+::-webkit-scrollbar-thumb  { background: #2d3748; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #4a5568; }
+
+/* ── Focus rings ───────────────────────────── */
+:focus-visible {
+  outline: 2px solid #0a84ff;
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
+/* ── Severity colours ──────────────────────── */
 .severity-CRITICAL { color: #ff3b3b; }
-.severity-HIGH { color: #ff9500; }
-.severity-MEDIUM { color: #ffd60a; }
-.severity-LOW { color: #00d084; }
+.severity-HIGH     { color: #ff9500; }
+.severity-MEDIUM   { color: #ffd60a; }
+.severity-LOW      { color: #00d084; }
 
-.bg-severity-CRITICAL { background-color: rgba(255, 59, 59, 0.15); border-color: rgba(255, 59, 59, 0.4); }
-.bg-severity-HIGH { background-color: rgba(255, 149, 0, 0.15); border-color: rgba(255, 149, 0, 0.4); }
-.bg-severity-MEDIUM { background-color: rgba(255, 214, 10, 0.15); border-color: rgba(255, 214, 10, 0.4); }
-.bg-severity-LOW { background-color: rgba(0, 208, 132, 0.15); border-color: rgba(0, 208, 132, 0.4); }
+.bg-severity-CRITICAL { background-color: rgba(255,59,59,0.12);  border-color: rgba(255,59,59,0.35); }
+.bg-severity-HIGH     { background-color: rgba(255,149,0,0.12);  border-color: rgba(255,149,0,0.35); }
+.bg-severity-MEDIUM   { background-color: rgba(255,214,10,0.12); border-color: rgba(255,214,10,0.35); }
+.bg-severity-LOW      { background-color: rgba(0,208,132,0.12);  border-color: rgba(0,208,132,0.35); }
 
+/* ── Glow helpers ──────────────────────────── */
+.glow-red    { box-shadow: 0 0 20px rgba(255,59,59,0.3); }
+.glow-green  { box-shadow: 0 0 20px rgba(0,208,132,0.3); }
+.glow-blue   { box-shadow: 0 0 20px rgba(10,132,255,0.3); }
+.glow-orange { box-shadow: 0 0 20px rgba(255,149,0,0.3); }
+.glow-purple { box-shadow: 0 0 20px rgba(191,90,242,0.3); }
+
+/* ── Card hover glow ────────────────────────── */
+.card-hover {
+  transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-1px);
+  border-color: rgba(10,132,255,0.4);
+  box-shadow: 0 0 24px rgba(10,132,255,0.12);
+}
+
+/* ── Critical ticker ───────────────────────── */
 @keyframes ticker {
-  0% { transform: translateX(0); }
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-
 .ticker-inner {
   animation: ticker 20s linear infinite;
   white-space: nowrap;
 }
 
-.glow-red {
-  box-shadow: 0 0 20px rgba(255, 59, 59, 0.3);
+/* ── Recharts custom ───────────────────────── */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: #161a22 !important;
+  border: 1px solid #1e2330 !important;
+  border-radius: 10px !important;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+}
+.recharts-cartesian-grid line { stroke: #1e2330; }
+.recharts-text { fill: #4a5568; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+
+/* ── Risk gauge bar ─────────────────────────── */
+.risk-bar-track {
+  background: #1e2330;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.risk-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.6s ease;
+}
+
+/* ── Page transition ─────────────────────────── */
+.page-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* ── Sidebar nav active indicator ─────────────── */
+.nav-active-dot {
+  width: 3px;
+  height: 60%;
+  background: #ff3b3b;
+  border-radius: 0 2px 2px 0;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ── Alert pulse ring ─────────────────────────── */
+@keyframes alertRing {
+  0%   { box-shadow: 0 0 0 0 rgba(255,59,59,0.5); }
+  70%  { box-shadow: 0 0 0 10px rgba(255,59,59,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,59,59,0); }
+}
+.alert-ring { animation: alertRing 1.5s ease-out infinite; }
+
+/* ── Gradient border card ────────────────────── */
+.gradient-border {
+  position: relative;
+  background: #161a22;
+  border-radius: 16px;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255,59,59,0.3), rgba(10,132,255,0.2), rgba(0,208,132,0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
