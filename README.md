@@ -6,6 +6,7 @@ Sistema de reporte y monitoreo de incidentes con arquitectura de microservicios 
 
 para levantar 
 # 1. MQTT broker
+en cmd
 docker run -d --name mosquitto -p 1883:1883 -p 9001:9001 -v %cd%/mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto:2.0
 
 # 2. Servicios (una terminal bash)

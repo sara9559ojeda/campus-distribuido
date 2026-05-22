@@ -49,8 +49,9 @@ export default function IncidentList({ refresh }) {
           onClick={load}
           disabled={loading}
           className="text-muted hover:text-white transition-colors disabled:opacity-50"
+          aria-label="Recargar lista de incidentes"
         >
-          <RefreshCw size={14} className={loading ? "animate-spin" : ""} />
+          <RefreshCw size={14} className={loading ? "animate-spin" : ""} aria-hidden="true" />
         </button>
       </div>
 
@@ -75,7 +76,7 @@ export default function IncidentList({ refresh }) {
                 <span className={`text-xs font-mono font-bold border rounded px-1.5 py-0.5 ${SEV_BADGE[inc.severity] || ""}`}>
                   {inc.severity}
                 </span>
-                <span className="text-xs font-mono text-dim">{inc.status}</span>
+                <span className="text-xs font-mono text-muted">{inc.status}</span>
               </div>
             </div>
           ))

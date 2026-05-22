@@ -94,6 +94,41 @@ app.post("/api/incidents", async (req, res) => {
   }
 });
 
+// GET /api/incidents/:id — get single incident
+app.get("/api/incidents/:id", async (req, res) => {
+  try {
+    const response = await axios.get(
+      `${INCIDENT_SERVICE_URL}/incidents/${req.params.id}`,
+      { timeout: 5000 }
+    );
+    res.json(response.data);
+  } catch (err) {
+    if (err.response?.status === 404) {
+      return res.status(404).json({ error: "Incident not found" });
+    }
+    console.error("[Gateway] GET /incidents/:id error:", err.message);
+    res.status(502).json({ error: "Incident service unavailable", requestId: req.requestId });
+  }
+});
+
+// PATCH /api/incidents/:id/status — update incident status
+app.patch("/api/incidents/:id/status", async (req, res) => {
+  try {
+    const response = await axios.patch(
+      `${INCIDENT_SERVICE_URL}/incidents/${req.params.id}/status`,
+      req.body,
+      { timeout: 5000 }
+    );
+    res.json(response.data);
+  } catch (err) {
+    if (err.response?.status === 404) {
+      return res.status(404).json({ error: "Incident not found" });
+    }
+    console.error("[Gateway] PATCH /incidents/:id/status error:", err.message);
+    res.status(502).json({ error: "Incident service unavailable", requestId: req.requestId });
+  }
+});
+
 // GET /api/analytics — proxy to analytics service
 app.get("/api/analytics", async (req, res) => {
   try {

@@ -62,10 +62,10 @@ export default function LiveFeed({ notifications, connected }) {
       <div ref={listRef} className="overflow-y-auto flex-1 p-3 space-y-2">
         {notifications.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-center gap-3">
-            <Zap size={28} className="text-dim" />
+            <Zap size={28} className="text-muted" />
             <div>
               <p className="text-muted text-sm">Sin alertas aún</p>
-              <p className="text-dim text-xs font-mono mt-1">
+              <p className="text-muted text-xs font-mono mt-1">
                 {connected ? "Escuchando eventos MQTT..." : "Conectando al servidor..."}
               </p>
             </div>
@@ -93,7 +93,7 @@ export default function LiveFeed({ notifications, connected }) {
                   </div>
                   <div className="flex-shrink-0 text-right">
                     <span className={`text-xs font-mono font-bold severity-${sev}`}>{sev}</span>
-                    <p className="text-xs text-dim font-mono mt-0.5">
+                    <p className="text-xs text-muted font-mono mt-0.5">
                       {timeAgo(notif.timestamp || inc?.timestamp)}
                     </p>
                   </div>

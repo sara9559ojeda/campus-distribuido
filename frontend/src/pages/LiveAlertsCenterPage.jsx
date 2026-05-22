@@ -106,7 +106,7 @@ function AlertCard({ notif, index }) {
                 {inc.reportedBy}
               </span>
             )}
-            <span className="flex items-center gap-1 ml-auto text-dim">
+            <span className="flex items-center gap-1 ml-auto text-muted">
               <Clock size={10} aria-hidden="true" />
               {timeAgo(notif.timestamp || inc?.timestamp)}
             </span>
@@ -126,7 +126,7 @@ function AlertCard({ notif, index }) {
 
       {/* ID footer */}
       {inc?.id && (
-        <p className="text-[10px] font-mono text-dim mt-2 pt-2 border-t border-white/5">
+        <p className="text-[10px] font-mono text-muted mt-2 pt-2 border-t border-white/5">
           ID: {inc.id}
         </p>
       )}
@@ -329,7 +329,7 @@ export default function LiveAlertsCenterPage() {
           <div className="flex items-center gap-2">
             <Zap size={16} className="text-muted" aria-hidden="true" />
             <span className="font-display text-xl tracking-wider text-white">ALERT STREAM</span>
-            <span className="text-xs font-mono text-dim">
+            <span className="text-xs font-mono text-muted">
               {visible.length} {sevFilter !== "ALL" ? `(${sevFilter})` : "total"}
             </span>
           </div>
@@ -349,7 +349,7 @@ export default function LiveAlertsCenterPage() {
                                ? s === "ALL"
                                  ? "bg-info/15 border-info/35 text-info"
                                  : `border-current`
-                               : "border-border text-dim hover:text-white hover:border-muted/40"
+                               : "border-border text-muted hover:text-white hover:border-muted/40"
                              }`}
                   style={sevFilter === s && s !== "ALL" ? { color: cfg?.color, borderColor: `${cfg?.color}40`, background: `${cfg?.color}12` } : {}}
                   aria-pressed={sevFilter === s}
@@ -376,13 +376,13 @@ export default function LiveAlertsCenterPage() {
                 animate={{ scale: [1, 1.08, 1] }}
                 transition={{ repeat: Infinity, duration: 2 }}
               >
-                <Zap size={32} className="text-dim" aria-hidden="true" />
+                <Zap size={32} className="text-muted" aria-hidden="true" />
               </motion.div>
               <div>
                 <p className="text-muted text-sm">
                   {connected ? "Esperando alertas..." : "WebSocket desconectado"}
                 </p>
-                <p className="text-dim text-xs font-mono mt-1">
+                <p className="text-muted text-xs font-mono mt-1">
                   {connected
                     ? "Los incidentes aparecerán aquí en tiempo real"
                     : "Reconectando automáticamente cada 3s..."
@@ -401,7 +401,7 @@ export default function LiveAlertsCenterPage() {
 
         {/* Footer */}
         <div className="px-5 py-3 border-t border-border bg-night/30 flex items-center justify-between">
-          <p className="text-xs font-mono text-dim">
+          <p className="text-xs font-mono text-muted">
             Buffer: {notifications.length} / 50 notificaciones
           </p>
           {dismissed.size > 0 && (

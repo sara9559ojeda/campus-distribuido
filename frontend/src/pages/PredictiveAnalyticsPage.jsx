@@ -119,7 +119,7 @@ function ZoneCard({ zone, delay }) {
 
       <div className="flex items-center justify-between text-xs font-mono">
         <span className="text-muted">Score: <span style={{ color: level.color }}>{score}/100</span></span>
-        <div className="flex gap-3 text-dim">
+        <div className="flex gap-3 text-muted">
           <span>Total: {totalCount}</span>
           {recentCount > 0 && <span className="text-warn">Recientes: {recentCount}</span>}
         </div>
@@ -158,7 +158,7 @@ function PredictiveAlertBanner({ alert, delay }) {
           <p className="text-xs font-mono text-muted mt-0.5">{alert.detail}</p>
           <div className="flex items-center gap-1.5 mt-1.5">
             <MapPin size={10} className="text-muted" aria-hidden="true" />
-            <span className="text-xs font-mono text-dim">{alert.zone}</span>
+            <span className="text-xs font-mono text-muted">{alert.zone}</span>
           </div>
         </div>
         <span
@@ -232,7 +232,7 @@ export default function PredictiveAnalyticsPage() {
           <RiskGauge score={overallScore} level={overallRisk} />
 
           {/* Formula explanation */}
-          <div className="w-full bg-night border border-border rounded-xl p-3 text-xs font-mono text-dim">
+          <div className="w-full bg-night border border-border rounded-xl p-3 text-xs font-mono text-muted">
             <p className="text-muted mb-1 uppercase tracking-widest">Fórmula</p>
             <p className="text-green-400">CRITICAL×5 + HIGH×3 + MEDIUM×2 + LOW×1</p>
             <p className="mt-1">Normalizado a 0–100</p>
@@ -265,10 +265,10 @@ export default function PredictiveAnalyticsPage() {
 
           {predictiveAlerts.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-12 text-center gap-3">
-              <Zap size={28} className="text-dim" aria-hidden="true" />
+              <Zap size={28} className="text-muted" aria-hidden="true" />
               <div>
                 <p className="text-muted text-sm">Sin alertas predictivas activas</p>
-                <p className="text-dim text-xs font-mono mt-1">
+                <p className="text-muted text-xs font-mono mt-1">
                   El sistema monitorea tendencias en tiempo real
                 </p>
               </div>
@@ -290,7 +290,7 @@ export default function PredictiveAnalyticsPage() {
               </div>
               <div className="bg-night border border-border rounded-xl p-3 text-center">
                 <p className="text-xs font-mono text-muted mb-1">Anteriores HIGH+</p>
-                <p className="font-display text-2xl text-dim">{trend.olderHigh || 0}</p>
+                <p className="font-display text-2xl text-muted">{trend.olderHigh || 0}</p>
               </div>
               <div className="bg-night border border-border rounded-xl p-3 text-center">
                 <p className="text-xs font-mono text-muted mb-1">Variación</p>
@@ -311,7 +311,7 @@ export default function PredictiveAnalyticsPage() {
         <div className="flex items-center gap-2 mb-5">
           <TrendingUp size={16} className="text-info" aria-hidden="true" />
           <span className="font-display text-xl tracking-wider text-white">INCIDENT TIMELINE</span>
-          <span className="text-xs font-mono text-dim ml-auto">Últimas 12 horas · datos WS en tiempo real</span>
+          <span className="text-xs font-mono text-muted ml-auto">Últimas 12 horas · datos WS en tiempo real</span>
         </div>
         <div aria-label="Gráfica de incidentes por hora" style={{ height: 220 }}>
           <ResponsiveContainer width="100%" height="100%">
@@ -351,7 +351,7 @@ export default function PredictiveAnalyticsPage() {
           <div className="flex items-center gap-2 mb-1">
             <MapPin size={16} className="text-warn" aria-hidden="true" />
             <span className="font-display text-xl tracking-wider text-white">HEAT ZONES</span>
-            <span className="text-xs font-mono text-dim ml-auto">Por risk score</span>
+            <span className="text-xs font-mono text-muted ml-auto">Por risk score</span>
           </div>
           {loading && zoneRisks.length === 0 ? (
             [...Array(5)].map((_, i) => (

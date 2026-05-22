@@ -27,7 +27,7 @@ function MetricCard({ label, value, sub, color, icon: Icon, delay = 0 }) {
       <p className="font-display text-3xl tracking-wider" style={{ color }}>
         {value}
       </p>
-      {sub && <p className="text-xs text-dim font-mono mt-1">{sub}</p>}
+      {sub && <p className="text-xs text-muted font-mono mt-1">{sub}</p>}
     </motion.div>
   );
 }
@@ -101,7 +101,7 @@ export default function DashboardPage() {
           label="WebSocket"
           value={connected ? "LIVE" : "OFF"}
           sub={connected ? "ws://localhost:3003" : "Reconectando..."}
-          color={connected ? "#00d084" : "#4a5568"}
+          color={connected ? "#00d084" : "#8892a4"}
           icon={Wifi}
           delay={0.25}
         />

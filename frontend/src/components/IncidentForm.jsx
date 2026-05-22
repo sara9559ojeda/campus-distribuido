@@ -60,10 +60,11 @@ export default function IncidentForm({ onSuccess }) {
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Description */}
         <div>
-          <label className="block text-xs font-mono text-muted mb-2 uppercase tracking-widest">
+          <label htmlFor="incident-description" className="block text-xs font-mono text-muted mb-2 uppercase tracking-widest">
             Descripción del incidente
           </label>
           <textarea
+            id="incident-description"
             value={form.description}
             onChange={(e) => setForm({ ...form, description: e.target.value })}
             placeholder="Ej: Persona herida en el pasillo principal..."
@@ -74,10 +75,11 @@ export default function IncidentForm({ onSuccess }) {
 
         {/* Location */}
         <div>
-          <label className="block text-xs font-mono text-muted mb-2 uppercase tracking-widest">
-            <MapPin size={11} className="inline mr-1" />Ubicación
+          <label htmlFor="incident-location" className="block text-xs font-mono text-muted mb-2 uppercase tracking-widest">
+            <MapPin size={11} className="inline mr-1" aria-hidden="true" />Ubicación
           </label>
           <select
+            id="incident-location"
             value={form.location}
             onChange={(e) => setForm({ ...form, location: e.target.value })}
             className="w-full bg-night border border-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-accent/60 transition-colors appearance-none cursor-pointer"
@@ -91,15 +93,16 @@ export default function IncidentForm({ onSuccess }) {
 
         {/* Severity */}
         <div>
-          <label className="block text-xs font-mono text-muted mb-2 uppercase tracking-widest">
+          <p id="severity-label" className="block text-xs font-mono text-muted mb-2 uppercase tracking-widest">
             Nivel de severidad
-          </label>
-          <div className="grid grid-cols-4 gap-2">
+          </p>
+          <div className="grid grid-cols-4 gap-2" role="group" aria-labelledby="severity-label">
             {SEVERITIES.map(({ value, label, color }) => (
               <button
                 key={value}
                 type="button"
                 onClick={() => setForm({ ...form, severity: value })}
+                aria-pressed={form.severity === value}
                 className={`border rounded-lg py-2 text-xs font-mono font-medium transition-all ${color} ${
                   form.severity === value ? "ring-2 ring-offset-1 ring-offset-card" : "opacity-50 hover:opacity-80"
                 }`}
@@ -112,10 +115,11 @@ export default function IncidentForm({ onSuccess }) {
 
         {/* Reporter */}
         <div>
-          <label className="block text-xs font-mono text-muted mb-2 uppercase tracking-widest">
-            <User size={11} className="inline mr-1" />Reportado por (opcional)
+          <label htmlFor="incident-reporter" className="block text-xs font-mono text-muted mb-2 uppercase tracking-widest">
+            <User size={11} className="inline mr-1" aria-hidden="true" />Reportado por (opcional)
           </label>
           <input
+            id="incident-reporter"
             type="text"
             value={form.reportedBy}
             onChange={(e) => setForm({ ...form, reportedBy: e.target.value })}

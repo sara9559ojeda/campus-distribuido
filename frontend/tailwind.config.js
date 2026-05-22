@@ -19,7 +19,7 @@ export default {
         info:   "#0a84ff",
         purple: "#bf5af2",
         yellow: "#ffd60a",
-        muted:  "#4a5568",
+        muted:  "#8892a4",
         dim:    "#2d3748",
       },
       animation: {

@@ -17,7 +17,7 @@ function StatCard({ icon: Icon, label, value, sub, color = "#0a84ff" }) {
         <Icon size={14} style={{ color }} />
       </div>
       <p className="font-display text-3xl tracking-wider" style={{ color }}>{value}</p>
-      {sub && <p className="text-xs text-dim font-mono mt-1">{sub}</p>}
+      {sub && <p className="text-xs text-muted font-mono mt-1">{sub}</p>}
     </div>
   );
 }
@@ -65,7 +65,7 @@ export default function AnalyticsDashboard() {
       <div className="flex items-center gap-2 mb-5">
         <BarChart2 size={16} className="text-info" />
         <span className="font-display text-xl tracking-widest text-white">ANALYTICS</span>
-        <span className="text-xs font-mono text-dim ml-auto">Auto-refresh 5s</span>
+        <span className="text-xs font-mono text-muted ml-auto">Auto-refresh 5s</span>
       </div>
 
       <div className="grid grid-cols-2 gap-3 mb-5">

@@ -43,7 +43,7 @@ export default function ServiceStatus() {
               </div>
               <div className="flex items-center gap-3">
                 {svc.status === "ok" && svc.data?.uptime !== undefined && (
-                  <span className="text-xs font-mono text-dim hidden sm:block">
+                  <span className="text-xs font-mono text-muted hidden sm:block">
                     {Math.floor(svc.data.uptime)}s up
                   </span>
                 )}
@@ -62,7 +62,7 @@ export default function ServiceStatus() {
         )}
       </div>
 
-      <div className="mt-3 flex items-center gap-2 text-xs font-mono text-dim">
+      <div className="mt-3 flex items-center gap-2 text-xs font-mono text-muted">
         <Activity size={11} />
         <span>Arquitectura distribuida · MQTT broker + 4 microservicios</span>
       </div>

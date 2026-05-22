@@ -168,7 +168,7 @@ function IncidentModal({ incident, onClose, onStatusUpdate }) {
 
 /* ── Sort indicator ────────────────────────────────────────── */
 function SortIcon({ field, sortField, sortDir }) {
-  if (sortField !== field) return <ChevronUp size={12} className="text-dim opacity-40" aria-hidden="true" />;
+  if (sortField !== field) return <ChevronUp size={12} className="text-muted opacity-40" aria-hidden="true" />;
   return sortDir === "asc"
     ? <ChevronUp size={12} className="text-info" aria-hidden="true" />
     : <ChevronDown size={12} className="text-info" aria-hidden="true" />;
@@ -423,7 +423,7 @@ export default function IncidentManagementPage() {
               ) : filtered.length === 0 ? (
                 <tr>
                   <td colSpan={7} className="text-center py-12 text-muted font-mono text-sm">
-                    <FileText size={28} className="mx-auto mb-2 text-dim" aria-hidden="true" />
+                    <FileText size={28} className="mx-auto mb-2 text-muted" aria-hidden="true" />
                     Sin incidentes para los filtros actuales
                   </td>
                 </tr>
@@ -447,7 +447,7 @@ export default function IncidentManagementPage() {
                     >
                       <td className="px-4 py-3 max-w-xs">
                         <p className="text-white truncate">{inc.description}</p>
-                        <p className="text-xs text-dim font-mono mt-0.5">{inc.id?.slice(0, 8)}...</p>
+                        <p className="text-xs text-muted font-mono mt-0.5">{inc.id?.slice(0, 8)}...</p>
                       </td>
                       <td className="px-4 py-3 text-muted font-mono text-xs">
                         <div className="flex items-center gap-1">
@@ -466,7 +466,7 @@ export default function IncidentManagementPage() {
                       <td className="px-4 py-3 text-muted font-mono text-xs">
                         {inc.reportedBy || "anon"}
                       </td>
-                      <td className="px-4 py-3 text-dim font-mono text-xs whitespace-nowrap">
+                      <td className="px-4 py-3 text-muted font-mono text-xs whitespace-nowrap">
                         <span title={timeStr(inc.timestamp)}>{timeAgo(inc.timestamp)}</span>
                       </td>
                       <td className="px-4 py-3 text-right">
@@ -490,7 +490,7 @@ export default function IncidentManagementPage() {
 
         {/* Table footer */}
         <div className="px-4 py-3 border-t border-border bg-night/30 flex items-center justify-between">
-          <p className="text-xs font-mono text-dim">
+          <p className="text-xs font-mono text-muted">
             Mostrando {filtered.length} de {incidents.length} incidentes
           </p>
           {newIds.size > 0 && (

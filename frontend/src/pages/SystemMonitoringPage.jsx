@@ -53,7 +53,7 @@ function ServiceCard({ svc, delay }) {
           </div>
           <div>
             <p className="text-sm text-white font-body">{svc.name}</p>
-            <p className="text-xs font-mono text-dim">:{svc.port}</p>
+            <p className="text-xs font-mono text-muted">:{svc.port}</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -79,13 +79,13 @@ function ServiceCard({ svc, delay }) {
       {/* Metrics */}
       <div className="grid grid-cols-2 gap-2 text-xs font-mono">
         <div className="bg-night border border-border rounded-lg px-3 py-2">
-          <p className="text-dim mb-0.5">Latency</p>
+          <p className="text-muted mb-0.5">Latency</p>
           <p style={{ color: isOk ? svc.color : "#4a5568" }}>
             {svc.latency !== null ? `${svc.latency}ms` : "—"}
           </p>
         </div>
         <div className="bg-night border border-border rounded-lg px-3 py-2">
-          <p className="text-dim mb-0.5">Uptime</p>
+          <p className="text-muted mb-0.5">Uptime</p>
           <p className="text-muted">
             {svc.data?.uptime !== undefined
               ? `${Math.floor(svc.data.uptime)}s`
@@ -98,11 +98,11 @@ function ServiceCard({ svc, delay }) {
         {svc.port === "3002" && (
           <>
             <div className="bg-night border border-border rounded-lg px-3 py-2">
-              <p className="text-dim mb-0.5">Incidents</p>
+              <p className="text-muted mb-0.5">Incidents</p>
               <p className="text-white">{svc.data?.incidentCount ?? "—"}</p>
             </div>
             <div className="bg-night border border-border rounded-lg px-3 py-2">
-              <p className="text-dim mb-0.5">MQTT</p>
+              <p className="text-muted mb-0.5">MQTT</p>
               <p className={svc.data?.mqttConnected ? "text-safe" : "text-muted"}>
                 {svc.data?.mqttConnected ? "Connected" : "—"}
               </p>
@@ -112,11 +112,11 @@ function ServiceCard({ svc, delay }) {
         {svc.port === "3003" && (
           <>
             <div className="bg-night border border-border rounded-lg px-3 py-2">
-              <p className="text-dim mb-0.5">WS Clients</p>
+              <p className="text-muted mb-0.5">WS Clients</p>
               <p className="text-safe">{svc.data?.wsClients ?? svc.data?.connectedClients ?? "—"}</p>
             </div>
             <div className="bg-night border border-border rounded-lg px-3 py-2">
-              <p className="text-dim mb-0.5">Notifications</p>
+              <p className="text-muted mb-0.5">Notifications</p>
               <p className="text-white">{svc.data?.notificationCount ?? "—"}</p>
             </div>
           </>
@@ -124,11 +124,11 @@ function ServiceCard({ svc, delay }) {
         {svc.port === "3004" && (
           <>
             <div className="bg-night border border-border rounded-lg px-3 py-2">
-              <p className="text-dim mb-0.5">Avg RT</p>
+              <p className="text-muted mb-0.5">Avg RT</p>
               <p className="text-purple-400">{svc.data?.avgResponseTime ? `${svc.data.avgResponseTime}ms` : "—"}</p>
             </div>
             <div className="bg-night border border-border rounded-lg px-3 py-2">
-              <p className="text-dim mb-0.5">Total</p>
+              <p className="text-muted mb-0.5">Total</p>
               <p className="text-white">{svc.data?.totalIncidents ?? "—"}</p>
             </div>
           </>
@@ -136,7 +136,7 @@ function ServiceCard({ svc, delay }) {
       </div>
 
       {/* Description */}
-      <p className="text-[10px] font-mono text-dim mt-3">{svc.description}</p>
+      <p className="text-[10px] font-mono text-muted mt-3">{svc.description}</p>
     </motion.div>
   );
 }
@@ -209,7 +209,7 @@ export default function SystemMonitoringPage() {
               <Icon size={13} style={{ color }} aria-hidden="true" />
             </div>
             <p className="font-display text-3xl tracking-wider" style={{ color }}>{value}</p>
-            <p className="text-xs text-dim font-mono mt-1">{sub}</p>
+            <p className="text-xs text-muted font-mono mt-1">{sub}</p>
           </motion.div>
         ))}
       </section>
@@ -229,7 +229,7 @@ export default function SystemMonitoringPage() {
           <div className="flex items-center gap-2 mb-4">
             <Clock size={16} className="text-info" aria-hidden="true" />
             <span className="font-display text-xl tracking-wider text-white">LATENCY HISTORY</span>
-            <span className="text-xs font-mono text-dim ml-auto">Últimas verificaciones</span>
+            <span className="text-xs font-mono text-muted ml-auto">Últimas verificaciones</span>
           </div>
           {history.length < 2 ? (
             <div className="flex items-center justify-center h-40 text-muted font-mono text-sm">
@@ -261,7 +261,7 @@ export default function SystemMonitoringPage() {
           <div className="flex items-center gap-2 mb-4">
             <Server size={16} className="text-safe" aria-hidden="true" />
             <span className="font-display text-xl tracking-wider text-white">SERVICES UPTIME</span>
-            <span className="text-xs font-mono text-dim ml-auto">UP vs DOWN por check</span>
+            <span className="text-xs font-mono text-muted ml-auto">UP vs DOWN por check</span>
           </div>
           {history.length < 2 ? (
             <div className="flex items-center justify-center h-40 text-muted font-mono text-sm">
@@ -355,7 +355,7 @@ export default function SystemMonitoringPage() {
             >
               <p style={{ color }} className="font-bold mb-0.5">{label}</p>
               <p className="text-muted text-[10px]">{sub}</p>
-              <p className="text-dim text-[10px] mt-0.5">:{port}</p>
+              <p className="text-muted text-[10px] mt-0.5">:{port}</p>
               <p className="text-white/70 text-[10px] mt-1.5 leading-relaxed">{desc}</p>
             </div>
           ))}

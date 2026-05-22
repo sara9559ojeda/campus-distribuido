@@ -93,7 +93,7 @@ export default function MainLayout() {
 
         {/* Nav */}
         <nav className="flex-1 py-4 px-3 space-y-0.5 overflow-y-auto" aria-label="Menú principal">
-          <p className="text-[10px] font-mono text-dim uppercase tracking-widest px-3 mb-2">
+          <p className="text-[10px] font-mono text-muted uppercase tracking-widest px-3 mb-2">
             Navegación
           </p>
           {NAV_ITEMS.map(({ to, icon: Icon, label, end }) => (
@@ -159,7 +159,7 @@ export default function MainLayout() {
               {connected ? "WebSocket LIVE" : "Desconectado"}
             </span>
           </div>
-          <p className="text-[10px] font-mono text-dim mt-1.5">
+          <p className="text-[10px] font-mono text-muted mt-1.5">
             MQTT · WebSocket · 4 microservicios
           </p>
         </div>
@@ -270,7 +270,7 @@ export default function MainLayout() {
               </span>
             ))}
           </div>
-          <p className="text-center text-dim text-[10px] font-mono mt-1">
+          <p className="text-center text-muted text-[10px] font-mono mt-1">
             Arquitectura distribuida · Comunicación asíncrona vía MQTT · Pruebas de carga con jMeter
           </p>
         </footer>

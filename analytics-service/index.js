@@ -70,6 +70,11 @@ mqttClient.on("connect", () => {
 });
 
 mqttClient.on("message", (topic, message) => {
+  // Only count from severity-specific topics to avoid double-counting:
+  // incident-service publishes to both campus/incidents/{severity} AND campus/incidents/all.
+  // campus/incidents/updated is a status change, not a new incident.
+  if (topic === "campus/incidents/all" || topic === "campus/incidents/updated") return;
+
   try {
     const incident = JSON.parse(message.toString());
     updateStats(incident);
